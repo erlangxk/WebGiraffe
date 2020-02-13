@@ -1,0 +1,7 @@
+bin
+obj
+.ionide
+.vscode
+.paket/
+paket-files/
+packages/
