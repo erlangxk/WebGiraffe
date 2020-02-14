@@ -1,19 +1,13 @@
 namespace Server
 
 open Microsoft.AspNetCore.Hosting
-open Microsoft.Extensions.Hosting
 
 module Program =
-    let exitCode = 0
-
-    let CreateHostBuilder args =
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(fun webBuilder ->
-                webBuilder.UseStartup<Init.Startup>() |> ignore
-            )
-
     [<EntryPoint>]
-    let main args =
-        CreateHostBuilder(args).Build().Run()
-
-        exitCode
+    let main _ =
+        WebHostBuilder()
+            .UseKestrel()
+            .UseStartup<Init.Startup>()
+            .Build()
+            .Run()
+        0
