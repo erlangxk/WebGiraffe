@@ -1,4 +1,4 @@
-namespace Server
+namespace MxServer
 
 open Microsoft.AspNetCore.Hosting
 

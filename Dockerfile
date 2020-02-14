@@ -4,16 +4,16 @@ WORKDIR /source
 
 # copy csproj and restore as distinct layers
 
-COPY src/Server/*.fsproj ./Server/
-RUN dotnet restore ./Server/Server.fsproj
+COPY src/MxServer/*.fsproj ./MxServer/
+RUN dotnet restore ./MxServer/MxServer.fsproj
 
 # copy everything else and build app
-COPY src/Server/. ./Server/
-WORKDIR /source/Server
+COPY src/MxServer/. ./MxServer/
+WORKDIR /source/MxServer
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "Server.dll"]
+ENTRYPOINT ["dotnet", "MxServer.dll"]
